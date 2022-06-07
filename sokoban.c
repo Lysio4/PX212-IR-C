@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "sokoban.h"
+#include "header.h"
+
+Coordonnees Position1 = {2,3};
+
 
 int PousserCAISSE(int direction, int x, int y){
   int Position[2][2];

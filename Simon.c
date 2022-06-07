@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fonctions.h"
+#include "header.h"
 
 int dernier_level(){
   char chaine[7] = "";

@@ -1,34 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "Fonctions.c"
+#include "header.h"
 
-void Objectif(**plateau){
+void Objectif(char **plateau){
   int CaisseRestante = 0;
-  for (i = 0 ; i < largeur ; i++){
-    for (j = 0 ; j < longueur ; j++){
-      if (Position[i][j] == Caisse{
+  int i;
+  int j;
+  for (i = 0 ; i < Largeur ; i++){
+    for (j = 0 ; j < Longueur ; j++){
+      if (Position[i][j] == Caisse){
         CaisseRestante += 1;
       }
     }
   }
 }
 
-void FinNiveau(**plateau){
+void FinNiveau(char **plateau){
   if (CaisseRestante == 0) {
     niveau++;
     return niveau;
   }
 }
 
-int SauvegardeNiveau(**plateau){
+int SauvegardeNiveau(char **plateau){
   FILE* level = NULL;
   int i = 0, j = 0;
   level = fopen("levels.lvl", "w");
   if (level == NULL){
     return 0;
   }
-  else { for (i = 0 ; i < largeur; i++){
-    for (j = 0 ; j < longueur ; j++){
+  else { for (i = 0 ; i < Largeur; i++){
+    for (j = 0 ; j < Longueur ; j++){
       fprintf(level, "%d", niveau[j][i]);
       }
       }

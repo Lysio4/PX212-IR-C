@@ -2,23 +2,35 @@
 #include <stdio.h>
 #include "header.h"
 
-int ascii_touche;
+#define NIV 50
 
-void touches(){
+int PousserCaisse(int direction, int x, int y);
+int DeplacerManu(int direction);
+
+int ascii_touche;
+Coordonnees points;
+
+void touches(int niveau){
   configureTerminal();
+  int x;
+  int y;
     ascii_touche = litClavier();
     switch(ascii_touche){
         case 1: //up arrow A
-        printf("Flèche haut\n");
+        //printf("Flèche haut\n");
+        points = position(niveau);
+        x = points.x;
+        y = points.y;
+        PousserCaisse(Haut, x, y);
         break;
         case 2: //down arrow B
-        printf("Flèche bas\n");
+        //printf("Flèche bas\n");
         break;
         case 3: //right arrow C
-        printf("Flèche droite\n");
+        //printf("Flèche droite\n");
         break;
         case 4: //left arrow D
-        printf("Flèche gauche\n");
+        //printf("Flèche gauche\n");
         break;
         case 8: //delete
         printf("Delete\n");
@@ -29,15 +41,13 @@ void touches(){
         default:
         printf("Autre\n");
         break;
-        //case 13: //enter
-        //break;
     }
 }
 
 int main(){
   printf("Je code le Sokoban OMEGALUL\n");
   while (true) {
-    touches();
+    touches(NIV);
   }
   return 0;
 }
