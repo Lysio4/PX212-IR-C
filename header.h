@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 //io.c + touches.c
+int configureTerminal();
 int litClavier();
 int test();
 void touches();

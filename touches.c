@@ -5,6 +5,7 @@
 int ascii_touche;
 
 void touches(){
+  configureTerminal();
     ascii_touche = litClavier();
     switch(ascii_touche){
         case 1: //up arrow A
@@ -35,6 +36,8 @@ void touches(){
 
 int main(){
   printf("Je code le Sokoban OMEGALUL\n");
-  touches();
+  while (true) {
+    touches();
+  }
   return 0;
 }

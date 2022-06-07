@@ -1,11 +1,11 @@
 #include <termios.h>
-#include <unistd.h> 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "header.h"
 
-#define MAXSIZE 10 
+#define MAXSIZE 10
 
 int configureTerminal()
 {
@@ -25,20 +25,20 @@ int configureTerminal()
 	return true;
 }
 
-int litClavier() 
+int litClavier()
 {
 	char r[MAXSIZE];
-	int c;  
+	int c;
 
-	if ((c=read(0,r,3)) == - 1 ) return false; 
+	if ((c=read(0,r,3)) == - 1 ) return false;
 
 	switch (r[0]) {
-		case 27 :  if ((c==3) && (r[1]==91)) return (r[2]-64); else return false; break; 
-		default: return r[0]; break; 
+		case 27 :  if ((c==3) && (r[1]==91)) return (r[2]-64); else return false; break;
+		default: return r[0]; break;
 	}
 }
 
-int main(){
+int test(){
 	while (true){
 		printf("%d", litClavier());
 	}
