@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "header.h"
 
 #define MAXSIZE 10 
 
@@ -37,3 +38,8 @@ int litClavier()
 	}
 }
 
+int main(){
+	while (true){
+		printf("%d", litClavier());
+	}
+}
