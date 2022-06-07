@@ -4,7 +4,6 @@
 
 //io.c + touches.c
 int litClavier();
-int ascii(char value);
 int main();
 void touches();
 
