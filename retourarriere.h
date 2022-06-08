@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
+#include "pile.h"
 
-void redo();
+void redo(Lnode **ph, char **Plateau);
