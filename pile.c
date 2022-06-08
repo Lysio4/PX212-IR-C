@@ -1,16 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "header.h"
+#include "pile.h"
 
-/* Ici, on est oblig� d'utiliser la notation struct xxx,
-car la structure s'auto-r�f�rence!*/
-/*typedef struct node {
-		Coordonnees data ;
-		int direction;
-		bool deplacement;
-		struct node *link ;
-		} Lnode ;*/
 
 /* Insertion en "t�te de liste" */
 void insertionTete(Lnode **ph,Coordonnees item,int direction,bool caisse){
@@ -70,28 +62,3 @@ void listeAffiche(Lnode * ptr){
 		}
 	printf("\n") ;
 	}
-
-/* Programme principal. Ne doit pas �tre modifi�!!! */
-/*int main(void) {
-	Lnode *tete = NULL ;
-
-	listeAffiche(tete) ;
-	insertionTete(&tete,'a') ;
-	listeAffiche(tete) ;
-	insertionTete(&tete,'c') ;
-	listeAffiche(tete) ;
-	insertionQueue(&tete,'t') ;
-	listeAffiche(tete) ;
-	insertionQueue(&tete,'s') ;
-	listeAffiche(tete) ;
-	suppressionTete(&tete) ;
-	listeAffiche(tete) ;
-	suppressionTete(&tete) ;
-	listeAffiche(tete) ;
-	suppressionQueue(&tete) ;
-	listeAffiche(tete) ;
-	suppressionTete(&tete) ;
-	listeAffiche(tete) ;
-
-   return EXIT_SUCCESS;
-   }	*/

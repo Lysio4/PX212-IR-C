@@ -1,20 +1,29 @@
-main: sokoban.o main.o
-	gcc -g -Wall -fsanitize=address -o main lecture.o main.o
+CC = gcc
+CFLAGS = -Wall -g -fsanitize=address
+OBJECTS = doit.o io.o utils.o gestion_plateau.o pile.o sokoban.o
+BIN = main
+RM = rm
 
-sokoban.o: sokoban.c
-	gcc -o sokoban.o -c sokoban.c -g -Wall -fsanitize=address
+all: $(OBJECTS)
+	@$(CC) -o $(BIN) $(OBJECTS) $(CFLAGS)
 
-main.o: main.c header.h
-	gcc -o main.o -c main.c -g -Wall -fsanitize=address
+doit.o: doit.c io.h gestion_plateau.h utils.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-main: Fonctions.o main.o
-  gcc -g -o main Fonctions.o main.o -lm -Wall -fsanitize=address
+io.o: io.c io.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-Fonctions.o: Fonctions.c
-	gcc -o Fonctions.o -fcommon -c Fonctions.c -g -Wall -fsanitize=address
+utils.o: utils.c utils.h sokoban.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-main.o: main.c header.h
-  gcc -o main.o -c main.c -g -Wall -fsanitize=address
+gestion_plateau.o: gestion_plateau.c gestion_plateau.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-touches.o: touches.c io.c header.h
-	gcc -o main.o -c main.c -g -Wall -fsanitize=address
+pile.o: pile.c pile.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
+
+sokoban.o: sokoban.c sokoban.h gestion_plateau.h
+	@$(CC) -o $@ -c $< $(CFLAGS)
+
+clean:
+	@$(RM) -f $(OBJECTS) $(BIN)
