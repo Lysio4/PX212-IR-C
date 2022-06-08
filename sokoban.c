@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include "sokoban.h"
 
-Coordonnees PosManu = {2,3};
-
-
 int PousserCaisse(char ** Plateau ,int direction, int x, int y){
   int CompteurPouss = 0;
   int CompteurMouv = 0;
@@ -16,62 +13,56 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y-2][x] == CIBLE){
+    else if(Plateau[y-2][x] == CIBLE && Plateau[y-1][x] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y-2][x] = CAISSESURCIBLE;
       Plateau[y-2][x] = MANU;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else;
-
-    if (Plateau [y-2][x] == VIDE && Plateau [y-1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y-2][x] == VIDE && Plateau [y-1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y-2][x] = CAISSE;
       Plateau[y-1][x]= MANU;
       Plateau[y][x]= CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y-2][x]== CIBLE){
+    else if(Plateau[y-2][x]== CIBLE && Plateau [y-1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y-2][x] = CAISSESURCIBLE;
       Plateau[y-1][x]= MANU;
       Plateau[y][x]= CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else;
-
-    if (Plateau[y-2][x] == VIDE && Plateau[y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
+    else if (Plateau[y-2][x] == VIDE && Plateau[y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y-2][x] = CAISSE;
       Plateau[y-1][x]= MANUSURCIBLE;
       Plateau[y][x]= VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if (Plateau[y-2][x] == CIBLE){
+    else if (Plateau[y-2][x] == CIBLE && Plateau[y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y-2][x] = CAISSESURCIBLE;
-      Plateau[y-1][x] = MANU;
+      Plateau[y-1][x] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else;
-
-    if (Plateau [y-2][x] == VIDE && Plateau [y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y-2][x] == VIDE && Plateau [y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
         Plateau[y-2][x] = CAISSE;
         Plateau[y-1][x] = MANUSURCIBLE;
         Plateau[y][x] = CIBLE;
         CompteurMouv ++;
         CompteurPouss ++;
     }
-    else if(Plateau[y-2][x]== CIBLE){
+    else if(Plateau[y-2][x]== CIBLE && Plateau [y-1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
         Plateau[y-2][x] = CAISSESURCIBLE;
         Plateau[y-1][x] = MANUSURCIBLE;
         Plateau[y][x] = CIBLE;
         CompteurMouv ++;
         CompteurPouss ++;
     }
-    else;
+
     break;
 
     case Bas : if (Plateau[y+2][x] == VIDE && Plateau[y+1][x] == CAISSE && Plateau[y][x] == MANU){
@@ -81,41 +72,35 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y+2][x]== CIBLE){
+    else if(Plateau[y+2][x]== CIBLE && Plateau[y+1][x] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y+2][x] = CAISSESURCIBLE;
       Plateau[y+1][x] = MANU;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-
-    else;
-
-    if (Plateau [y+2][x] == VIDE && Plateau [y+1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y+2][x] == VIDE && Plateau [y+1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y+2][x] = CAISSE;
       Plateau[y+1][x] = MANU;
       Plateau[y][x] = CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y+2][x]== CIBLE){
+    else if(Plateau[y+2][x]== CIBLE && Plateau [y+1][x] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y+2][x] = CAISSESURCIBLE;
       Plateau[y+1][x] = MANU;
       Plateau[y][x] = CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-
-    else;
-
-    if (Plateau[y+2][x] == VIDE && Plateau[y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
+    else if (Plateau[y+2][x] == VIDE && Plateau[y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y+2][x] = CAISSE;
       Plateau[y+1][x] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y+2][x]== CIBLE){
+    else if(Plateau[y+2][x]== CIBLE && Plateau[y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y+2][x] = CAISSESURCIBLE;
       Plateau[y+1][x]= MANU;
       Plateau[y][x] = VIDE;
@@ -123,9 +108,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau [y+2][x] == VIDE && Plateau [y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y+2][x] == VIDE && Plateau [y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y+2][x] = CAISSE;
       Plateau[y+2][x] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
@@ -133,7 +116,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y+2][x]== CIBLE){
+    else if(Plateau[y+2][x]== CIBLE && Plateau [y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y+2][x] = CAISSESURCIBLE;
       Plateau[y+1][x] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
@@ -145,7 +128,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
 
     break;
 
-    case Droite : if (Plateau[y][x+2] == VIDE && Plateau[y][x+1] == CAISSE && Plateau[y][x] == MANU){
+    case Gauche : if (Plateau[y][x+2] == VIDE && Plateau[y][x+1] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y][x+2] = CAISSE;
       Plateau[y][x+1] = MANU;
       Plateau[y][x] = VIDE;
@@ -153,7 +136,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x+2]== CIBLE){
+    else if(Plateau[y][x+2] == CIBLE && Plateau[y][x+1] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y][x+2] = CAISSESURCIBLE;
       Plateau[y][x+1] = MANU;
       Plateau[y][x] = VIDE;
@@ -161,9 +144,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau [y][x+2] == VIDE && Plateau [y][x+1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
+    else if(Plateau [y][x+2] == VIDE && Plateau [y][x+1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x+2] = CAISSE;
       Plateau[y][x+1] = MANU;
       Plateau[y][x] = CIBLE;
@@ -171,7 +152,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x+2]== CIBLE){
+    else if(Plateau[y][x+2]== CIBLE && Plateau [y][x+1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x+2] = CAISSESURCIBLE;
       Plateau[y][x+1] = MANU;
       Plateau[y][x] = CIBLE;
@@ -179,26 +160,22 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau[y][x+2] == VIDE && Plateau[y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
+    else if (Plateau[y][x+2] == VIDE && Plateau[y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y][x+2] = CAISSE;
       Plateau[y][x+1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y][x+2] == CIBLE){
+    else if(Plateau[y][x+2] == CIBLE && Plateau[y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y][x+2] = CAISSESURCIBLE;
-      Plateau[y][x+1] = MANU;
+      Plateau[y][x+1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau [y][x+2] == VIDE && Plateau [y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y][x+2] == VIDE && Plateau [y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x+2] = CAISSE;
       Plateau[y][x+1] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
@@ -206,7 +183,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x+2] == CIBLE){
+    else if(Plateau[y][x+2] == CIBLE && Plateau [y][x+1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x+2] = CAISSESURCIBLE;
       Plateau[y][x+1] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
@@ -218,7 +195,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
 
     break;
 
-    case Gauche : if (Plateau[y][x-2] == VIDE && Plateau[y][x-1] == CAISSE && Plateau[y][x] == MANU){
+    case Droite : if (Plateau[y][x-2] == VIDE && Plateau[y][x-1] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y][x-2] = CAISSE;
       Plateau[y][x-1] = MANU;
       Plateau[y][x] = VIDE;
@@ -226,7 +203,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x-2]== CIBLE){
+    else if(Plateau[y][x-2]== CIBLE && Plateau[y][x-1] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y][x-2] = CAISSESURCIBLE;
       Plateau[y][x-1] = MANU;
       Plateau[y][x] = VIDE;
@@ -234,9 +211,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau [y][x-2] == VIDE && Plateau [y][x-1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
+    else if(Plateau [y][x-2] == VIDE && Plateau [y][x-1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x-2] = CAISSE;
       Plateau[y][x-1] = MANU;
       Plateau[y][x] = CIBLE;
@@ -244,7 +219,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x-2]== CIBLE){
+    else if(Plateau[y][x-2]== CIBLE && Plateau [y][x-1] == CAISSE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x-2] = CAISSESURCIBLE;
       Plateau[y][x-1] = MANU;
       Plateau[y][x] = CIBLE;
@@ -252,9 +227,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau[y][x-2] == VIDE && Plateau[y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
+    else if (Plateau[y][x-2] == VIDE && Plateau[y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y][x-2] = CAISSE;
       Plateau[y][x-1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
@@ -262,24 +235,22 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
       CompteurPouss ++;
     }
 
-    else if(Plateau[y][x-2] == CIBLE){
+    else if(Plateau[y][x-2] == CIBLE && Plateau[y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANU){
       Plateau[y][x-2] = CAISSESURCIBLE;
-      Plateau[y][x-1] = MANU;
+      Plateau[y][x-1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
 
-    else;
-
-    if (Plateau [y][x-2] == VIDE && Plateau [y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
+    else if (Plateau [y][x-2] == VIDE && Plateau [y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x-2] = CAISSE;
       Plateau[y][x-1] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
     }
-    else if(Plateau[y][x-2]== CIBLE){
+    else if(Plateau[y][x-2]== CIBLE && Plateau [y][x-1] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y][x-2] = CAISSESURCIBLE;
       Plateau[y][x-1] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
@@ -296,16 +267,26 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
 int DeplacerManu(char ** Plateau, int direction, int x, int y){
   int CompteurMouv = 0;
   switch(direction){
-    case Haut : if(Plateau[y-1][x] == VIDE){
-      Plateau[y-1][x] = MANU;
-      Plateau[y][x] = VIDE;
-      CompteurMouv ++;
-    }
-    else if(Plateau[y-1][x] == CIBLE){
-      Plateau[y-1][x] = MANUSURCIBLE;
-      Plateau[y][x] = VIDE;
-      CompteurMouv ++;
-    }
+    case Haut : if(Plateau[y-1][x] == VIDE && Plateau[y][x] == MANU){
+        Plateau[y-1][x] = MANU;
+        Plateau[y][x] = VIDE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y-1][x] == CIBLE && Plateau[y][x] == MANU){
+        Plateau[y-1][x] = MANUSURCIBLE;
+        Plateau[y][x] = VIDE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y-1][x] == VIDE && Plateau[y][x] == MANUSURCIBLE){
+        Plateau[y-1][x] = MANU;
+        Plateau[y][x] = CIBLE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y-1][x] == CIBLE && Plateau[y][x] == MANUSURCIBLE){
+        Plateau[y-1][x] = MANUSURCIBLE;
+        Plateau[y][x] = CIBLE;
+        CompteurMouv ++;
+      }
 
     else if(Plateau[y-1][x] == MUR){
     }
@@ -314,36 +295,58 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
     }
     break;
 
-    case Bas : if(Plateau[y+1][x] == VIDE){
-      Plateau[y+1][x] = MANU;
-      Plateau[y][x] = VIDE;
-      CompteurMouv ++;
-    }
-    else if(Plateau[y+1][x] == CIBLE){
-      Plateau[y+1][x] = MANUSURCIBLE;
-      Plateau[y][x] = VIDE;
-      CompteurMouv ++;
-    }
+    case Bas : if(Plateau[y+1][x] == VIDE && Plateau[y][x] == MANU){
+        Plateau[y+1][x] = MANU;
+        Plateau[y][x] = VIDE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y+1][x] == CIBLE && Plateau[y][x] == MANU){
+        Plateau[y+1][x] = MANUSURCIBLE;
+        Plateau[y][x] = VIDE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y+1][x] == VIDE && Plateau[y][x] == MANUSURCIBLE){
+        Plateau[y+1][x] = MANU;
+        Plateau[y][x] = CIBLE;
+        CompteurMouv ++;
+      }
+      else if(Plateau[y+1][x] == CIBLE && Plateau[y][x] == MANUSURCIBLE){
+        Plateau[y+1][x] = MANUSURCIBLE;
+        Plateau[y][x] = CIBLE;
+        CompteurMouv ++;
+      }
 
-    else if(Plateau[y+1][x] == MUR){
-    }
+      else if(Plateau[y+1][x] == MUR){
+      }
     else{
       PousserCaisse(Plateau ,Bas, x, y);
     }
     break;
 
-    case Gauche : if(Plateau[y][x+1] == VIDE){
-      Plateau[y][x+1] = MANU;
+    case Droite :
+    printf("x=%d,y=%d\n",x,y);
+    if(Plateau[y][x-1] == VIDE && Plateau[y][x] == MANU){
+      Plateau[y][x-1] = MANU;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
     }
-    else if(Plateau[y][x+1] == CIBLE){
-      Plateau[y+1][x] = MANUSURCIBLE;
+    else if(Plateau[y][x-1] == CIBLE && Plateau[y][x] == MANU){
+      Plateau[y][x-1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
+      CompteurMouv ++;
+    }
+    else if(Plateau[y][x-1] == VIDE && Plateau[y][x] == MANUSURCIBLE){
+      Plateau[y][x-1] = MANU;
+      Plateau[y][x] = CIBLE;
+      CompteurMouv ++;
+    }
+    else if(Plateau[y][x-1] == CIBLE && Plateau[y][x] == MANUSURCIBLE){
+      Plateau[y][x-1] = MANUSURCIBLE;
+      Plateau[y][x] = CIBLE;
       CompteurMouv ++;
     }
 
-    else if(Plateau[y][x+1] == MUR){
+    else if(Plateau[y][x-1] == MUR){
     }
     else{
       PousserCaisse(Plateau ,Droite, x, y);
@@ -351,22 +354,34 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
 
     break;
 
-    case Droite : if(Plateau[y][x-1] == VIDE){
-      Plateau[y][x-1] = MANU;
+    case Gauche:
+    if(Plateau[y][x+1] == VIDE && Plateau[y][x] == MANU){
+      Plateau[y][x+1] = MANU;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
     }
-    else if(Plateau[y][x-1] == CIBLE){
-      Plateau[y-1][x] = MANUSURCIBLE;
+    else if(Plateau[y][x+1] == CIBLE && Plateau[y][x] == MANU){
+      Plateau[y][x+1] = MANUSURCIBLE;
       Plateau[y][x] = VIDE;
+      CompteurMouv ++;
+    }
+    else if(Plateau[y][x+1] == VIDE && Plateau[y][x] == MANUSURCIBLE){
+      Plateau[y][x+1] = MANU;
+      Plateau[y][x] = CIBLE;
+      CompteurMouv ++;
+    }
+    else if(Plateau[y][x+1] == CIBLE && Plateau[y][x] == MANUSURCIBLE){
+      Plateau[y][x+1] = MANUSURCIBLE;
+      Plateau[y][x] = CIBLE;
       CompteurMouv ++;
     }
 
-    else if(Plateau[y][x-1] == MUR){
+    else if(Plateau[y][x+1] == MUR){
     }
     else{
       PousserCaisse(Plateau ,Gauche, x, y);
     }
-  }
+  break;
+}
   return 0;
 }

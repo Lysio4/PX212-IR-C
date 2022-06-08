@@ -58,12 +58,6 @@ int trouver_level(int niveau){
         }
       }
       fgetc(levels);
-      while(fgetc(levels)==';'){
-        while(fgetc(levels)!='\n'){
-
-        }
-      }
-
       compteur=ftell(levels);
       fclose(levels);
   }
@@ -76,6 +70,10 @@ int taille_longueur(int niveau){
   int difference = 0;
   int retour_ligne = 0;
   int position = 0;
+  int dernier_niveau=0;
+
+
+  dernier_niveau= dernier_level(niveau);
 
   FILE* levels=NULL;
   levels=fopen("levels.lvl", "r");
@@ -91,6 +89,9 @@ int taille_longueur(int niveau){
         retour_ligne++;
       }
     }
+  }
+  if(niveau == dernier_niveau){
+    retour_ligne++;
   }
   //printf("le nombre de retour_ligne est %d\n", retour_ligne);
   fclose(levels);
@@ -114,7 +115,6 @@ int taille_largeur(int niveau){
     }
     else{
       compteur1 =trouver_level(niveau);
-      //fseek(levels,-1,SEEK_END);
       while(!feof(levels)){
         fgetc(levels);
       }
@@ -138,9 +138,12 @@ char ** afficher_plateau(int niveau){
   int i=0;
   int indice =0;
   char **plateau;
+  char *p =NULL;
+  //char *poubelle;
 
   FILE* levels=NULL;
   levels=fopen("levels.lvl", "r");
+  //poubelle=malloc(sizeof(char)*difference);
 
   difference = taille_largeur(niveau);
   retour_ligne = taille_longueur(niveau);
@@ -159,18 +162,20 @@ char ** afficher_plateau(int niveau){
   position=ftell(levels);//connaitre la position du curseur
   while(position < (compteur2-9)&& indice<(retour_ligne)){ //-9 pour enlever la ligne ;LEVEL...
     fgets(plateau[indice],difference,levels);
+    if ((p = strchr(plateau[indice], '\n')) != NULL){
+      *p = '\0';
+    }
     indice++;
     position=ftell(levels);
-    //printf("indice = %d\n",indice);
   }
 
   //affichage du tableau
-  //printf("debut\n");
   for(int i=0;i<indice;i++){
     printf("%s",plateau[i]);
     //free(plateau[i]);
   }
   //free (plateau);
+  //free (poubelle);
   fclose(levels);
   return plateau;
 }
@@ -180,7 +185,7 @@ Coordonnees position(char ** Plateau, int Longueur, int Largeur){
 
   for(int i=0; i<Longueur; i++){
     for(int j=0; j<Largeur; j++){
-      if (Plateau[i][j]=='@'){
+      if (Plateau[i][j]=='@'||Plateau[i][j]=='!'){
         position_manu.x = j;
         position_manu.y = i;
         printf("x = %d\n",position_manu.x);
