@@ -1,10 +1,13 @@
+#include "gestion_plateau.h"
 #ifndef _PILE_H
 #define _PILE_H
 
 /* Ici, on est oblig� d'utiliser la notation struct xxx,
 car la structure s'auto-r�f�rence!*/
 typedef struct node {
-		char data ;
+		Coordonnees data ;
+		int direction;
+		bool deplacement; //caisse
 		struct node *link ;
 		} Lnode ;
 
