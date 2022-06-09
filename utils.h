@@ -1,11 +1,13 @@
 #ifndef _UTILS_H
 #define _UTILS_H
 #include "sokoban.h"
-extern int Niveau;
-extern int CaisseRestante;
+#include "game.h"
 
-void Objectif(char **plateau,int Largeur, int Longueur);
-void FinNiveau(char **plateau);
+extern int CaisseRestante;
+extern Coordonnees PosManu;
+
+int Objectif(char **plateau,int Largeur, int Longueur);
+void FinNiveau(int Niveau);
 int SauvegardeNiveau(char **plateau,int Largeur, int Longueur);
 
 #endif

@@ -1,64 +1,45 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include <stdbool.h>
 #include "pile.h"
 
 
-/* Insertion en "t�te de liste" */
-void insertionTete(Lnode **ph,Coordonnees item,int direction,bool caisse){
+/**
+*insertionTete permet d'empiler une donnée sur une pile donnée.
+*/
+void insertionTete(Lnode **ph,char item, char item2){
 	Lnode* node = (Lnode*) malloc(sizeof(Lnode));
-	node->data = item;
-	node->direction = direction;
-	node->deplacement = caisse;
+	Donnee Temp;
+	Temp.Deplacement = item;
+	Temp.Poussee = item2;
+	node->data = Temp;
 	node->link = *ph;
 	*ph = node;
 	}
 
-/* Insertion en "queue de liste" */
-void insertionQueue(Lnode **ph,Coordonnees item,int direction,bool caisse)	{
-	Lnode* node = (Lnode*) malloc(sizeof(Lnode));
-	node->data = item;
-	node->direction = direction;
-	node->deplacement = caisse;
-	node->link = NULL;
-	Lnode* ptr;
-	ptr = *ph;
-	while (ptr->link != NULL)
-	{
-		ptr = ptr->link;		
-	}
-	ptr->link = node;
-	}
-
-/* Suppression en "t�te de liste" */
-void suppressionTete(Lnode **ph){
+/**
+*suppressionTete permet de dépiler une donnée d'une pile donnée.
+*/
+Donnee suppressionTete(Lnode **ph){
+	Donnee Retour;
+	Retour.Deplacement = -1;
+	Lnode *temp;
 	if (*ph != NULL)
 	{
+		temp = *ph;
 		*ph = (*ph)->link;
+		Retour = temp->data;
+		free(temp);
 	}
-	}
-
-/* Suppression en "Queue" de liste" */
-void suppressionQueue(Lnode **ph){
-	Lnode* ptr;
-	ptr = *ph;
-	while (ptr != NULL)
-	{
-		ptr = ptr->link;		
-	}
-	ptr->link = NULL;
+	return Retour;
 	}
 
-/* Proc�dure d'affichage de la liste. Ne doit pas �tre modifi�e!!! */
 void listeAffiche(Lnode * ptr){
 	if ( NULL == ptr )
 		printf("Liste vide!") ;
-	else 
+	else
 		printf("Contenu de la liste : ") ;
 	while ( NULL != ptr ) 	{
-		printf("%c ",ptr->data.x);
-		printf("%c ",ptr->data.y);
 		ptr = ptr->link ;
 		}
 	printf("\n") ;

@@ -3,13 +3,13 @@
 #include <string.h>
 #include "gestion_plateau.h"
 
+///dernier_level permet de définir quel est le dernier niveau.
 int dernier_level(){
   char chaine[7] = "";
   char buf[2];
   int val =0;
   FILE* levels=NULL;
   levels=fopen("levels.lvl", "r");
-
   if(levels!=NULL){
     fseek(levels, -1, SEEK_END);
     while ((strcmp(chaine, ";LEVEL")) !=0){
@@ -31,6 +31,7 @@ int dernier_level(){
   return val;
 }
 
+///trouver_level permet de trouver le niveau demandé.
 int trouver_level(int niveau){
   FILE* levels=NULL;
   char chaine[7] = "";
@@ -138,12 +139,9 @@ char ** afficher_plateau(int niveau){
   int i=0;
   int indice =0;
   char **plateau;
-  char *p =NULL;
-  //char *poubelle;
 
   FILE* levels=NULL;
   levels=fopen("levels.lvl", "r");
-  //poubelle=malloc(sizeof(char)*difference);
 
   difference = taille_largeur(niveau);
   retour_ligne = taille_longueur(niveau);
@@ -162,9 +160,11 @@ char ** afficher_plateau(int niveau){
   position=ftell(levels);//connaitre la position du curseur
   while(position < (compteur2-9)&& indice<(retour_ligne)){ //-9 pour enlever la ligne ;LEVEL...
     fgets(plateau[indice],difference,levels);
+    /*
     if ((p = strchr(plateau[indice], '\n')) != NULL){
       *p = '\0';
     }
+    */
     indice++;
     position=ftell(levels);
   }
@@ -175,7 +175,6 @@ char ** afficher_plateau(int niveau){
     //free(plateau[i]);
   }
   //free (plateau);
-  //free (poubelle);
   fclose(levels);
   return plateau;
 }
@@ -185,11 +184,11 @@ Coordonnees position(char ** Plateau, int Longueur, int Largeur){
 
   for(int i=0; i<Longueur; i++){
     for(int j=0; j<Largeur; j++){
-      if (Plateau[i][j]=='@'||Plateau[i][j]=='!'){
+      if ((Plateau[i][j]=='@')||(Plateau[i][j]=='!')){
         position_manu.x = j;
         position_manu.y = i;
-        printf("x = %d\n",position_manu.x);
-        printf("y = %d\n",position_manu.y);
+        //printf("x = %d\n",position_manu.x);
+        //printf("y = %d\n",position_manu.y);
       }
     }
   }

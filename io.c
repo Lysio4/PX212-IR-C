@@ -7,6 +7,9 @@
 
 #define MAXSIZE 10
 
+/**
+*configureTerminal permet de configurer le terminal pour pouvoir jouer de la meilleure façon possible.
+*/
 int configureTerminal()
 {
 	struct termios new;
@@ -14,8 +17,8 @@ int configureTerminal()
       		perror("tcgetattr");
 		return -1;
     	}
-	new.c_lflag &= ~(ICANON); // Met le terminal en mode canonique.
-	new.c_lflag &= ~(ECHO);   // les touches tapées ne s'inscriront plus dans le terminal
+	new.c_lflag &= ~(ICANON); //!< Met le terminal en mode canonique.
+	new.c_lflag &= ~(ECHO);   //!< les touches tapées ne s'inscriront plus dans le terminal
 	new.c_cc[VMIN]=1;
 	new.c_cc[VTIME]=0;
 	if (tcsetattr(0,TCSANOW,&new)==-1) {
@@ -25,6 +28,9 @@ int configureTerminal()
 	return true;
 }
 
+/**
+*litClavier permet de lire une touche en input.
+*/
 int litClavier()
 {
 	char r[MAXSIZE];
@@ -35,11 +41,5 @@ int litClavier()
 	switch (r[0]) {
 		case 27 :  if ((c==3) && (r[1]==91)) return (r[2]-64); else return false; break;
 		default: return r[0]; break;
-	}
-}
-
-int test(){
-	while (true){
-		printf("%d", litClavier());
 	}
 }

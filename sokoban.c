@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "sokoban.h"
 
+///PousserCaisse permet de gérer la poussée d'une caisse.
 int PousserCaisse(char ** Plateau ,int direction, int x, int y){
   int CompteurPouss = 0;
   int CompteurMouv = 0;
@@ -15,7 +16,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
     }
     else if(Plateau[y-2][x] == CIBLE && Plateau[y-1][x] == CAISSE && Plateau[y][x] == MANU){
       Plateau[y-2][x] = CAISSESURCIBLE;
-      Plateau[y-2][x] = MANU;
+      Plateau[y-1][x] = MANU;
       Plateau[y][x] = VIDE;
       CompteurMouv ++;
       CompteurPouss ++;
@@ -110,7 +111,7 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
 
     else if (Plateau [y+2][x] == VIDE && Plateau [y+1][x] == CAISSESURCIBLE && Plateau[y][x] == MANUSURCIBLE){
       Plateau[y+2][x] = CAISSE;
-      Plateau[y+2][x] = MANUSURCIBLE;
+      Plateau[y+1][x] = MANUSURCIBLE;
       Plateau[y][x] = CIBLE;
       CompteurMouv ++;
       CompteurPouss ++;
@@ -261,11 +262,13 @@ int PousserCaisse(char ** Plateau ,int direction, int x, int y){
 
     break;
   }
-  return 0;
+  return CompteurPouss;
 }
 
+///DeplacerManu permet de gérer les déplacements du manutentionnaire.
 int DeplacerManu(char ** Plateau, int direction, int x, int y){
   int CompteurMouv = 0;
+  int CompteurPouss=0;
   switch(direction){
     case Haut : if(Plateau[y-1][x] == VIDE && Plateau[y][x] == MANU){
         Plateau[y-1][x] = MANU;
@@ -292,6 +295,7 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
     }
     else{
       PousserCaisse(Plateau ,Haut, x, y);
+      CompteurPouss++;
     }
     break;
 
@@ -320,11 +324,11 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
       }
     else{
       PousserCaisse(Plateau ,Bas, x, y);
+      CompteurPouss++;
     }
     break;
 
     case Droite :
-    printf("x=%d,y=%d\n",x,y);
     if(Plateau[y][x-1] == VIDE && Plateau[y][x] == MANU){
       Plateau[y][x-1] = MANU;
       Plateau[y][x] = VIDE;
@@ -350,6 +354,7 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
     }
     else{
       PousserCaisse(Plateau ,Droite, x, y);
+      CompteurPouss++;
     }
 
     break;
@@ -380,8 +385,9 @@ int DeplacerManu(char ** Plateau, int direction, int x, int y){
     }
     else{
       PousserCaisse(Plateau ,Gauche, x, y);
+      CompteurPouss++;
     }
   break;
 }
-  return 0;
+  return CompteurPouss;
 }

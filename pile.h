@@ -1,20 +1,24 @@
-#include "gestion_plateau.h"
 #ifndef _PILE_H
 #define _PILE_H
 
-/* Ici, on est oblig� d'utiliser la notation struct xxx,
-car la structure s'auto-r�f�rence!*/
-typedef struct node {
-		Coordonnees data ;
-		int direction;
-		bool deplacement; //caisse
-		struct node *link ;
-		} Lnode ;
+/**
+*Structure utilisée dans la pile.
+*/
+typedef struct {
+	char Deplacement;//!Le déplacement de l'item.
+	char Poussee;//!Poussée ou non du personnage.
+} Donnee ;
 
-void insertionTete(Lnode **ph,Coordonnees item,int direction,bool caisse);
-void insertionQueue(Lnode **ph,Coordonnees item,int direction,bool caisse);
-void suppressionTete(Lnode **ph);
-void suppressionQueue(Lnode **ph);
+/**
+*Structure de la pile pour les fonctions de retour arrière.
+*/
+typedef struct Liste {
+	Donnee data;
+		struct Liste *link ;
+} Lnode ;
+
+void insertionTete(Lnode **ph,char item, char Data2);
+Donnee suppressionTete(Lnode **ph);
 void listeAffiche(Lnode * ptr);
 
 #endif
